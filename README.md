@@ -14,6 +14,6 @@ docker run -it hyperbola/ptt-login:v1 -u username -p password
 
 - `-u`, `--user` ptt username
 - `-p`, `--pswd` ptt password
-- `-P`, `--pswd-path` ptt password file; less prior to `--pswd`
+- `-P`, `--pswd-path` ptt password file; less prior than `--pswd`
 
 Noted that environment variable `USERNAME` overrides `--user`, and environment variable `PASSWORD` overrides `--pswd` and `--pswd-path`.
