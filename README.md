@@ -41,4 +41,4 @@ docker run -it \
 
 - [蝦皮簽到機器人](https://github.com/wdzeng/shopee-coins-bot)
 - [Pinkoi 簽到機器人](https://github.com/wdzeng/pinkoi-coins-bot)
-- [Telegram ID 覬覦者](https://github.com/wdzeng/telegram-id-pretener)
+- [Telegram ID 覬覦者](https://github.com/wdzeng/telegram-id-pretender)
