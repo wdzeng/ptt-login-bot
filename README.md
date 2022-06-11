@@ -1,27 +1,44 @@
-# PTT Login
+# 批踢踢登入機器人
 
-Login to [PTT](https://www.ptt.cc/index.html).
+[![release](https://badgen.net/github/release/wdzeng/ptt-login-bot/stable?color=red)](https://github.com/wdzeng/ptt-login-bot/releases/latest)
+[![github](https://badgen.net/badge/icon/github/black?icon=github&label=)](https://github.com/wdzeng/ptt-login-bot)
+[![docker](https://badgen.net/badge/icon/docker?icon=docker&label=)](https://hub.docker.com/repository/docker/hyperbola/ptt-login-bot)
 
-> **Warning** Do not login everyday at the same time. Your account [will be banned](https://www.ptt.cc/bbs/ID_Multi/M.1559453943.A.CBF.html).
+需搭配 cron 使用。注意長期在同一時間登入[會被 ban 帳號](https://www.ptt.cc/bbs/ID_Multi/M.1559453943.A.CBF.html)。
 
-## Usage
+## 執行方式
 
-Use docker.
+請先準備 [docker](https://docker.io)。
 
 ```sh
-docker run -it hyperbola/ptt-login:v1 -u username -p password
+docker run -it \
+    hyperbola/ptt-login-bot:v1 -u username -p password
 ```
 
-You may want to run it everyday in a random time so that your account will not be banned. Following crontab tries to login to PTT at random time from 08:10 to 08:59 everyday.
+以下 cron 會讓機器人在每日 08:10 ~ 08:59 之間隨機進行登入，這樣就不會被 ban。
 
 ```crontab
-0 0 * * * docker run -it hyperbola/ptt-login:v1 -u username -p password | at 08:$(( $RANDOM % 50 + 10 ))
+0 0 * * * docker run hyperbola/ptt-login-bot:v1 -u username -p password | at 08:$(( $RANDOM % 50 + 10 ))
 ```
 
-### Options
+## 參數
 
-- `-u`, `--user` ptt username
-- `-p`, `--pswd` ptt password
-- `-P`, `--pswd-path` ptt password file; less prior than `--pswd`
+- `-u`, `--user` 批踢踢帳號
+- `-p`, `--pswd` 批踢踢密碼
+- `-P`, `--pswd-path` 密碼檔案，優先於 `--pswd`
 
-Noted that environment variable `USERNAME` overrides `--user`, and environment variable `PASSWORD` overrides `--pswd` and `--pswd-path`.
+環境變數 `USERNAME` 優先於 `--user`；環境變數 `PASSWORD` 優先於 `--pswd-path` 和 `--pswd`。
+
+## Exit Code
+
+| Exit code | 描述 |
+| --------- | ----------- |
+| 0         | 登入成功。   |
+| 87        | 密碼錯誤。 |
+| 255       | 不明原因錯誤。 |
+
+## 姊妹機器人
+
+- [蝦皮簽到機器人](https://github.com/wdzeng/shopee-coins-bot)
+- [Pinkoi 簽到機器人](https://github.com/wdzeng/pinkoi-coins-bot)
+- [Telegram ID 覬覦者](https://github.com/wdzeng/telegram-id-pretener)

@@ -21,6 +21,15 @@ def get_password():
         try:
             with open(path, 'r') as f:
                 pswd = f.read()
+        except FileNotFoundError:
+            sys.stderr.write('File not found: ' + path + '\n')
+            sys.exit(87)
+        except IsADirectoryError:
+            sys.stderr.write('File is a directory: ' + path + '\n')
+            sys.exit(87)
+        except PermissionError:
+            sys.stderr.write('Permission denied: ' + path + '\n')
+            sys.exit(87)
         except:
             sys.stderr.write('Failed to read password from file: ' + path + '\n')
             sys.exit(255)
