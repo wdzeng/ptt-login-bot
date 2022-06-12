@@ -12,13 +12,13 @@
 
 ```sh
 docker run -it \
-    hyperbola/ptt-login-bot:v1 -u username -p password
+    hyperbola/ptt-login-bot:1 -u username -p password
 ```
 
 以下 cron 會讓機器人在每日 08:10 ~ 08:59 之間隨機進行登入，這樣就不會被 ban。
 
 ```crontab
-0 0 * * * docker run hyperbola/ptt-login-bot:v1 -u username -p password | at 08:$(( $RANDOM % 50 + 10 ))
+0 0 * * * docker run hyperbola/ptt-login-bot:1 -u username -p password | at 08:$(( $RANDOM % 50 + 10 ))
 ```
 
 ## 參數
