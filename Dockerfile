@@ -4,4 +4,4 @@ COPY main.py /app/main.py
 
 WORKDIR /app
 ENTRYPOINT [ "python", "main.py" ]
-LABEL description="Get shopee coins everyday."
+LABEL description="Log in to PTT everyday."
