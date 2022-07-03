@@ -3,6 +3,7 @@ import os
 import argparse
 from PyPtt import PTT
 
+version = '1.0.1'
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', '--user', help='ptt username')
 parser.add_argument('-p', '--pswd', help='ptt password')
@@ -62,6 +63,9 @@ def main():
     if not username or not password:
         sys.stderr.write('Missing username or password.\n')
         sys.exit(87)
+        
+    print('Start ptt login bot v' + version + '.')
+    
     exit_code = ptt_login(username, password)
     sys.exit(exit_code)
 
